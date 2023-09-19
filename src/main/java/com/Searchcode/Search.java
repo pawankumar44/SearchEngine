@@ -1,3 +1,8 @@
+package com.Searchcode;
+
+import com.Searchcode.DatabaseConnection;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +16,7 @@ import java.util.ArrayList;
 
 @WebServlet("/Search")//route
 public class Search extends HttpServlet {
-    //whenever the Search servlet triggered this doGet will be called
+    //whenever the com.Searchcode.Search servlet triggered this doGet will be called
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException {
         String keyword = request.getParameter("keyword");
@@ -31,11 +36,14 @@ public class Search extends HttpServlet {
                 System.out.println(result.getTitle()+"\n"+result.getLink());
             }
 //        generate html response
+            //send response to frontend
+            request.setAttribute("results",results);//this request will be forwarded to the frontend
+            request.getRequestDispatcher("search.jsp").forward(request,response);
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
 //        out.println("<h3>This is the keyword you have entered "+keyword+"</h3>");
         }
-        catch (SQLException sqlException){
+        catch (SQLException | ServletException sqlException){
             sqlException.printStackTrace();
         }
     }

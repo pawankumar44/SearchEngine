@@ -1,3 +1,5 @@
+package com.Searchcode;
+
 public class SearchResult {
     String title;
     String link;
