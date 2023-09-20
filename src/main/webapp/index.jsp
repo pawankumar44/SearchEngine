@@ -1,6 +1,9 @@
 <html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
 <body>
-<h2>Hello World!</h2>
+<h2>A Simple Search Engine</h2>
 <!--on submit it will go on "search" servlet-->
 <form action="Search">
     <input name="keyword" type="text">
